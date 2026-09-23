@@ -26,6 +26,43 @@ function DarkEquipMenu:init()
     }
 end
 
+function DarkEquipMenu:getAbilityPreview()
+    local party = self.party:getSelected()
+	if party.id == "jamm" then
+		local current_abilities = {}
+		local weapon = party.equipped.weapon
+		if weapon and weapon:getBonusName() then
+			current_abilities[1] = { name = weapon:getBonusName(), icon = weapon:getBonusIcon(), color = weapon:getBonusColor() }
+		end
+		local ammo = party.equipped.ammo
+		if ammo and ammo:getBonusName() then
+			current_abilities[2] = { name = ammo:getBonusName(), icon = ammo:getBonusIcon(), color = ammo:getBonusColor() }
+		end
+		local armor = party.equipped.armor[1]
+		if armor and armor:getBonusName() then
+			current_abilities[3] = { name = armor:getBonusName(), icon = armor:getBonusIcon(), color = armor:getBonusColor() }
+		end
+		if self.state == "ITEMS" and self:canEquipSelected() then
+			local preview_abilities = {}
+			local equipment = self:getEquipPreview()
+			for i = 1, 3 do
+				if equipment[i] and equipment[i]:getBonusName() then
+					preview_abilities[i] = {
+						name = equipment[i]:getBonusName(),
+						icon = equipment[i]:getBonusIcon(),
+						color = equipment[i]:getBonusColor()
+					}
+				end
+			end
+			return preview_abilities, current_abilities
+		else
+			return current_abilities, current_abilities
+		end
+	end
+	
+	return super.getAbilityPreview(self)
+end
+
 function DarkEquipMenu:getCurrentItemType()
     if self.selected_slot == 1 then
         return "weapons"
