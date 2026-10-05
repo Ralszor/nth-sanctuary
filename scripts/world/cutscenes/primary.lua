@@ -2038,6 +2038,7 @@ return {
 					},
 					{speed = 6}
 				))
+				Game:setFlag("fought_apathy", true)
 				cutscene:mapTransition("3_4th_sanctuary/fourth_sanctum_12_final", "entry")
 				return
 			end

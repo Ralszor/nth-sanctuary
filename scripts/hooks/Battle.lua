@@ -611,4 +611,52 @@ function Battle:nextTurn()
 	self.powder_mist = false
 end
 
+---@private
+---@return PartyBattler?
+function Battle:_getPartyByIndex(index)
+    local partybattler = self.party[index]
+    if not partybattler then return nil end
+    ---@cast partybattler PartyBattler
+    return partybattler
+end
+
+---@private
+function Battle:_isPartyByIndexSelectable(index)
+    local partybattler = self:_getPartyByIndex(index)
+    if not partybattler then return false end
+    return not partybattler.smitten
+end
+
+function Battle:onPartySelectState()
+    self.battle_ui:clearEncounterText()
+    self.current_menu_y = 1
+
+    if #self.party > 0 and not self:_isPartyByIndexSelectable(self.current_menu_y) then
+        local attempts = 0
+        repeat
+            attempts = attempts + 1
+            if attempts > #self.party then
+                -- No selectable party battlers found (somehow????); bail out
+                return
+            end
+
+            self.current_menu_y = self.current_menu_y + 1
+            if self.current_menu_y > #self.party then
+                self.current_menu_y = 1
+            end
+        until self:_isPartyByIndexSelectable(self.current_menu_y)
+    end
+end
+
+function Battle:onKeyPressed(key)
+	if self.state == "PARTYSELECT" then
+        if Input.isConfirm(key) and self.party[self.current_menu_y].smitten then
+            Assets.playSound("ui_cant_select")
+            return
+        end
+	end
+	
+	super.onKeyPressed(self, key)
+end
+
 return Battle

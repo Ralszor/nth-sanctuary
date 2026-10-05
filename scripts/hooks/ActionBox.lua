@@ -67,4 +67,16 @@ function ActionBox:drawSelectionMatrix()
     end
 end
 
+function ActionBox:draw()
+	super.draw(self)
+	
+	if self.battler.smitten then
+		Draw.setColor(PALETTE["action_fill"])
+		love.graphics.setFont(Assets.getFont("smallnumbers"))
+		love.graphics.rectangle("fill", 125, 9 - self.data_offset, 81, 12)
+		Draw.setColor(PALETTE["action_health_text_down"])
+		love.graphics.print("SMITTEN", 129, 9 - self.data_offset)
+	end
+end
+
 return ActionBox

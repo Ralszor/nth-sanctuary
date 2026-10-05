@@ -57,8 +57,8 @@ function PartyBattler:update()
         if battler.id == self.chara.id and self.y > SCREEN_HEIGHT and StringUtils.contains(self.chara.id, "cuptain") and self.chara.health < 0 then
             Mod.libs["midbattleparty"]:removePartyBattler(i)
             table.remove(Game.party, i)
-                self.chara.health = self.chara:getStat("health")
-                self:remove()
+            self.chara.health = self.chara:getStat("health")
+            self:remove()
         end
     end
 end
@@ -203,6 +203,20 @@ function PartyBattler:healAssist(amount, sparkle_color, show_up, playsound)
     if not show_up then
         self:healEffect(unpack(sparkle_color or {}))
     end
+end
+
+function PartyBattler:heal(amount, sparkle_color, show_up, playsound)
+	if self.smitten then
+		self:statusMessage("msg", "miss")
+		return
+	end
+	
+	super.heal(self, amount, sparkle_color, show_up, playsound)
+end
+
+function PartyBattler:swoon()
+	self.smitten = true
+	super.swoon(self)
 end
 
 return PartyBattler

@@ -360,6 +360,9 @@ function BattleUI:drawState()
 								love.graphics.print(enemy:getHealthDisplay(), hp_x + 4, 55 + y_off, 0, 1, 0.5)
 								love.graphics.setStencilTest()
 							end
+						elseif enemy.hide_hp then
+							Draw.setColor({3/4, 0, 1})
+							love.graphics.rectangle("fill", hp_x, 55 + y_off, 81, 16)
 						else
 							-- Draw the enemy's HP
 							Draw.setColor(PALETTE["action_health_bg"])
@@ -477,6 +480,15 @@ function BattleUI:drawState()
 					percentage = math.max(-1, percentage)
 					Draw.setColor(Game.battle.party[index].chara.assist_color)
 					love.graphics.rectangle("fill", 400, 55 + ((index - page_offset - 1) * 30), math.ceil(percentage * 101), 8)
+				end
+				if Game.battle.party[index].smitten then
+					Draw.setColor({0, 0, 0})
+					
+					love.graphics.rectangle("fill", 299, 55 + ((index - page_offset - 1) * 30), 202, 16)
+					
+					Draw.setColor({1, 0, 0})
+					
+					love.graphics.print("SMITTEN", 400, 47 + ((index - page_offset - 1) * 30))
 				end
 			end
 		end
