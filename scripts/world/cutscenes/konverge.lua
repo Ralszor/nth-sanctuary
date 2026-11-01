@@ -730,26 +730,45 @@ return {
         if choicer == 1 then
             cutscene:text("* That's for you to discover.")
             cutscene:text("* I wish you luck.")
-elseif choicer == 2 then
-   cutscene:text("* Uhhh[next]")
-   cutscene:text("* Uhhh Uhm-[next]")
-   cutscene:text("* so[next]")
-   cutscene:text("* you see-[next]")
-   cutscene:text("* Yes, I am.[wait:3][next]")
-   cutscene:text("* Definetely.[wait:3][next]")
-   cutscene:text("* Is that all?")
-elseif choicer == 3 then
-    cutscene:text("* Learn to spell, dumbass.")
-    if not Game:getFlag("jade_link") then
-    cutscene:text("[font:main,20][color:1985fc][style:none]* https://www.merriam-webster.com/")
-    Game:setFlag("jade_link", true)
-else
-  cutscene:text("[font:main,20][color:a591dc][style:none]* https://www.merriam-webster.com/")
-end
-else 
-    cutscene:text("* Goodbye, and good luck!")
-   return
-end
+        elseif choicer == 2 then
+           cutscene:text("* Uhhh[next]")
+           cutscene:text("* Uhhh Uhm-[next]")
+           cutscene:text("* so[next]")
+           cutscene:text("* you see-[next]")
+           cutscene:text("* Yes, I am.[wait:3][next]")
+           cutscene:text("* Definetely.[wait:3][next]")
+           cutscene:text("* Is that all?")
+        elseif choicer == 3 then
+            if not Game:getFlag("jade_link") then
+                cutscene:text("* Learn to spell, dumbass.")
+                cutscene:text("[font:main,20][color:1985fc][style:none]* https://www.merriam-webster.com/")
+                Game:setFlag("jade_link", 1)
+            elseif Game:getFlag("jade_link") == 1 then
+                cutscene:text("* you're fucking stupid")
+                cutscene:text("[font:main,20][color:a591dc][style:none]* https://www.merriam-webster.com/")
+                Game:setFlag("jade_link", 2)
+            elseif Game:getFlag("jade_link") == 2 then
+                local spr = Sprite("misc/youre")
+                spr:setScale(1)
+                spr:setParallax(0)
+                spr:setLayer(1000)
+                cutscene:wait(1)
+                Game.world.music:pause()
+                cutscene:text("[speed:0.25][noskip]* you're an absolute fucking moron")
+                Game.world:addChild(spr)
+                spr:setOrigin(0.5)
+                spr:setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+                spr:play(1/24, true)
+                Assets.playSound("crunchyassvineboom", 2, 1.5)
+                Game.world.timer:tween(2, spr, {scale_x = 1.5,scale_y = 1.5,alpha = 0}, 'linear')
+                cutscene:wait(2)
+                spr:remove()
+                Game.world.music:play()
+            end
+        else 
+            cutscene:text("* Goodbye, and good luck!")
+           return
+        end
             
     end
 }
