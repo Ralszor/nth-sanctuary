@@ -724,6 +724,32 @@ return {
         cutscene:text("[noskip]* [sound:bigballsmetalgear]big balls [wait:25]metal [wait:4]gear")
     end,
     kay = function (cutscene)
-        cutscene:text("* TEST FUCKING DIALOGUE HOLY FUCKING SHIT BALLS MAN IDK")
+        cutscene:text("* Hi, I'm Jade!")
+        cutscene:text("* What do you wanna Know?")
+        local choicer= cutscene:choicer({"Ask About Lore","Are you a dev?","your stupoid lookig","Bye"})
+        if choicer == 1 then
+            cutscene:text("* That's for you to discover.")
+            cutscene:text("* I wish you luck.")
+elseif choicer == 2 then
+   cutscene:text("* Uhhh[next]")
+   cutscene:text("* Uhhh Uhm-[next]")
+   cutscene:text("* so[next]")
+   cutscene:text("* you see-[next]")
+   cutscene:text("* Yes, I am.[wait:3][next]")
+   cutscene:text("* Definetely.[wait:3][next]")
+   cutscene:text("* Is that all?")
+elseif choicer == 3 then
+    cutscene:text("* Learn to spell, dumbass.")
+    if not Game:getFlag("jade_link") then
+    cutscene:text("[font:main,20][color:1985fc][style:none]* https://www.merriam-webster.com/")
+    Game:setFlag("jade_link", true)
+else
+  cutscene:text("[font:main,20][color:a591dc][style:none]* https://www.merriam-webster.com/")
+end
+else 
+    cutscene:text("* Goodbye, and good luck!")
+   return
+end
+            
     end
 }
