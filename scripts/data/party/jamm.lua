@@ -305,4 +305,41 @@ function character:heal(amount, playsound)
 	return super.heal(self, amount, playsound)
 end
 
+function character:drawHealth(ui, index)
+    super.drawHealth(self, ui, index)
+    if self:hasAssist() then
+            local col = math.floor((index - 4) / 11)
+        local row = (index - 4) % 11
+
+        local x_head  = MathUtils.rangeMap(ui.y, -80, 0, -100, 20  + col * 150)
+        local x_bar   = MathUtils.rangeMap(ui.y, -80, 0, -100, 60  + col * 150)
+        local x_text  = MathUtils.rangeMap(ui.y, -80, 0, -100, 60  + col * 150)
+        local y_pos   = 90 + 30 * row
+
+        local health = (self:getAssistHealth() / self:getStat("assist_health")) * 50
+        Draw.setColor(PALETTE["action_health_bg"])
+        Draw.rectangle("fill", x_bar+50, y_pos + 17, 50, 10)
+        
+        Draw.setColor(self.assist_color)
+        Draw.rectangle("fill", x_bar+50, y_pos + 17, math.ceil(health), 10)
+            local color
+        
+            Draw.setColor(COLORS.black)
+            for x = -1, 1 do
+                for y = -1, 1 do
+                    love.graphics.print(self:getAssistHealth().."/"..self:getStat("assist_health"), x_text + x, y_pos + y+17)
+                end
+            end
+            if (self:getAssistHealth() <= (self:getStat("assist_health") / 4)) then
+                color = PALETTE["action_health_text_low"]
+            else
+                color = PALETTE["action_health_text"]
+            end
+            love.graphics.print(self:getAssistHealth().."/"..self:getStat("assist_health"), x_text, y_pos + 17)
+            Draw.setColor(color)
+            love.graphics.print(self:getAssistHealth().."/"..self:getStat("assist_health"), x_text, y_pos+17)
+        return
+    end
+end
+
 return character
