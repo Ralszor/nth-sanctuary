@@ -9,7 +9,7 @@ function Dummy:init()
 ]==]
 
     -- Battle music ("battle" is rude buster)
-    self.music = "event"
+    self.music = "bufftitan"
     -- Enables the purple grid battle background
     self.background = true
 
