@@ -163,8 +163,8 @@ return {
             cutscene:text("* (It twinges with a strange energy...)")
             cutscene:text("* (You pick it up, [wait:5]and realize it's a [color:9999ff]Dark Shard.[color:white].)")
             Assets.playSound("shard_get")
-			cutscene:text("* (You obtained a [color:9999ff]Dark Shard.[color:white])")
 			Mod:setDarkShard(Mod.DarkShardID.LeafRoomShard, true)
+            Game.stage:addChild(ShardGetController(Mod.DarkShardID.LeafRoomShard))
             Game:setFlag("cleanup", true)
         else
             cutscene:text("* (The glass shards that fell off this tree look like leaves.)")

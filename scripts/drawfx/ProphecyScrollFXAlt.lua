@@ -1,7 +1,7 @@
 ---@class ProphecyScrollFX: FXBase
 local ProphecyScrollFXAlt, super = Class(FXBase)
 
-function ProphecyScrollFXAlt:init(outline, texture, priority)
+function ProphecyScrollFXAlt:init(outline, texture, priority, options)
     super.init(self, priority)
     ---@type love.Image
     self.texture = type(texture) == "string" and Assets.getTexture(texture) or (type(texture) == "userdata" and texture)
@@ -17,6 +17,8 @@ function ProphecyScrollFXAlt:init(outline, texture, priority)
     self.tick = 0;
     self.intro_mode = false;
 	self.outline = outline or nil
+    self.options = options or {}
+    self.drawcolor = ColorUtils.hexToRGB(self.options["color"] or "#42D0FF")
 
 end
 
@@ -67,10 +69,10 @@ function ProphecyScrollFXAlt:drawPart(texture, alpha)
     _cx, _cy = -_cx, -_cy
 
     local surf_textured = Draw.pushCanvas(640, 480);
-	love.graphics.clear(oldHexToRgb("#42D0FF", 1), 0);
+	love.graphics.clear(self.drawcolor, 0);
     local pnl_tex = Assets.getTexture("backgrounds/perlin_noise_looping")
 	local pnl_canvas = Draw.pushCanvas(pnl_tex:getDimensions())
-	draw_sprite_tiled_ext(pnl_tex, 0, 0, 0, 1, 1, oldHexToRgb("#42D0FF", alpha))
+	draw_sprite_tiled_ext(pnl_tex, 0, 0, 0, 1, 1, self.drawcolor)
 	Draw.popCanvas(true)
 	local x, y = -((_cx * 2) + ((Kristal.getTime()) * 30)) * 0.5, -((_cy * 2) + ((Kristal.getTime()) * 30)) * 0.5
 	draw_sprite_tiled_ext(Assets.getTexture("backgrounds/IMAGE_DEPTH_EXTEND_SEAMLESS"), 0, x, y, 2, 2, oldHexToRgb("#FFFFFF", 0.6));

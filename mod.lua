@@ -6,6 +6,13 @@ Mod.DarkShardID = {
     LeafRoomShard = 3,
 }
 
+Mod.DarkShardName = {
+    [Mod.DarkShardID.SecondSanctuary] = "Imbued",
+    [Mod.DarkShardID.FourthSanctuary] = "Apathetic Encounter",
+    [Mod.DarkShardID.BookShard] = "All Caught Up",
+    [Mod.DarkShardID.LeafRoomShard] = "DeltaLeaf",
+}
+
 function Mod:createDarkInventory(inventory)
   inventory.storages["ammo"] = {id = "ammo", max = 48, name = "AMMO"}
   

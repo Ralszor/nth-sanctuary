@@ -2009,9 +2009,8 @@ return {
 				
 				spr:remove()
 				Mod:setDarkShard(Mod.DarkShardID.FourthSanctuary, true)
-				Assets.playSound("shard_get")
-				cutscene:text("* (Susie obtained a [color:9999ff]Dark Shard.[color:white])")
-				cutscene:wait(1)
+				Game.stage:addChild(ShardGetController(Mod.DarkShardID.FourthSanctuary, {color1 = "ee99ee", color2 = "cc77cc"}))
+				cutscene:wait(3)
 
 				Assets.playSound("wing")
 				s:shake(2)
@@ -2166,8 +2165,8 @@ return {
 		cutscene:text("* (Instinctively, [wait:10]you pocket it.)")
 		spr:remove()
 		Mod:setDarkShard(Mod.DarkShardID.FourthSanctuary, true)
-		Assets.playSound("shard_get")
-		cutscene:text("* (You have obtained a [color:9999ff]Dark Shard.[color:white])")
+		Game.stage:addChild(ShardGetController(Mod.DarkShardID.FourthSanctuary))
+		cutscene:wait(2)
 		cutscene:wait(cutscene:walkTo(j, 275, 193, 1, "right"))
 		
 		cutscene:text("* Huh. [wait:10]You think these are related to the doors in the Travel area?", "look_left", "jamm")

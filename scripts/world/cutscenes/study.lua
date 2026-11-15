@@ -201,9 +201,8 @@ return {
 					cutscene:text("* (As you put the book back, [wait:5]you see something glinting behind.)")
 					cutscene:text("* (You reach behind with your free hand...)")
 					cutscene:text("* (And when you pull back, [wait:5]you find yourself holding a [color:9999ff]Dark Shard.[color:white])")
-					Assets.playSound("shard_get")
-					cutscene:text("* (You obtained a [color:9999ff]Dark Shard.[color:white])")
 					Mod:setDarkShard(Mod.DarkShardID.BookShard, true)
+					Game.stage:addChild(ShardGetController(Mod.DarkShardID.BookShard))
 					return
 				end
 				goto req

@@ -635,8 +635,8 @@ return {
 		cutscene:text("* (You can't help but feel the urge to keep it.)")
 		spr:remove()
 		Mod:setDarkShard(Mod.DarkShardID.SecondSanctuary, true)
-		Assets.playSound("shard_get")
-		cutscene:text("* (You have obtained a [color:9999ff]Dark Shard.[color:white])")
+		Game.stage:addChild(ShardGetController(Mod.DarkShardID.SecondSanctuary))
+		cutscene:wait(1)
 		cutscene:wait(cutscene:walkTo(kris, 1400, kris.y, 2))
 		cutscene:wait(cutscene:mapTransition("1_2nd_sanctuary/second_sanctum_11_exit", "entry"))
 		Game.party[1].health = 1
