@@ -13,8 +13,8 @@ function ShardGetController:init(id, options)
     
     self.options = options or {}
     
-    self.highcolor = options["color1"] or "9999ff"
-    self.lowcolor = options["color2"] or "6666ee"
+    self.highcolor = self.options["color1"] or "9999ff"
+    self.lowcolor = self.options["color2"] or "6666ee"
     
     self.text = Text("[color:"..self.highcolor.."][style:dark]"..Mod.DarkShardName[id], 0,0,640, nil, {["font"] = "ebtitle", ["align"] = "center"}) --plorgius
     self:addChild(self.text)
