@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.11" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="16" height="26" tilewidth="40" tileheight="40" infinite="0" nextlayerid="15" nextobjectid="49">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="26" tilewidth="40" tileheight="40" infinite="0" nextlayerid="15" nextobjectid="49">
  <editorsettings>
   <export target="data.lua" format="lua"/>
  </editorsettings>
@@ -130,6 +130,7 @@
   </object>
   <object id="14" name="transition" x="180" y="880" width="80" height="40">
    <properties>
+    <property name="flagcheck" value="ripple2nd"/>
     <property name="map" value="1_2nd_sanctuary/second_sanctum_1_winglade"/>
    </properties>
   </object>

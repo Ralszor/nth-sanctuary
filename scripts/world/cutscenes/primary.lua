@@ -1116,9 +1116,9 @@ return {
 			return ral.x == j.x - 50 end)
 		sus:setAnimation("heal_charge")
         cutscene:text("* Here, [wait:5]let me", "surprise_smile", {auto = true})
-		sus:setAnimation("heal_end")
+		sus:setAnimation({"heal_end", 1/7, false, next = "walk"})
 		Assets.playSound("wing")
-		cutscene:wait(1/10)  --need to add particle later
+		cutscene:wait(1/10)
 
 		local h = Game.world:spawnObject(Sprite("world/heal_small"))
 		h:setScale(2)

@@ -108,13 +108,6 @@ return {
         end
     end,
 
-    shard = function(cutscene)
-        cutscene:wait(2)
-        local this = BurstObj(Game.world.player.x, Game.world.player.y, {0.2, 0.2, 0.2}, "darkshard")
-        this:setScale(2)
-        Game.world:spawnObject(this)
-    end,
-
     tobykillsyou = function (cutscene)
         local toby = Sprite("npcs/dogcar")
         toby:play()
@@ -763,26 +756,5 @@ return {
 		Game.lock_movement = false
 		Game.world.player.force_walk = false
 		Game:setFlag("jamm_lore_done", true)
-	end,
-	secondsanctuary_ripple = function (cutscene)
-		local a = Game.world.player
-		Game:setFlag("ripple2nd", false)
-		cutscene:wait(cutscene:walkTo(a, a.x, a.y-20, 1, nil, true))
-		Game.world.music:fade(0, 2)
-		cutscene:wait(3)
-		Assets.playSound("jump")
-		a:setSprite("ball")
-		a.sprite:play(1/7, true)
-		a.physics.speed_y = -12
-		a.physics.gravity = 1
-		a.collidable = false
-		cutscene:wait(1.5)
-		a.collidable = true
-		a.physics.speed_y = 0
-		a.physics.gravity = 0
-		Game.world.map:doIntro()
-		Game.lock_movement = false
-		cutscene:wait(function () return (Game:getFlag("ripple2nd") == true) end)
-		cutscene:text("G")
 	end
 }

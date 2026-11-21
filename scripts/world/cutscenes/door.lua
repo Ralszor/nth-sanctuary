@@ -45,5 +45,6 @@ return {
         cutscene:walkTo(jamm, "walkp4", 1.5)
         cutscene:wait(1)
         Game.world:mapTransition("1_2nd_sanctuary/second_sanctum_0_ripple")
+        
     end
 }

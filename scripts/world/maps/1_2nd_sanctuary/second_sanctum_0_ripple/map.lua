@@ -79,6 +79,7 @@ function map:onEnter()
             self.finished = true
             Game.world.color = COLORS.white
             self.world:loadMap("1_2nd_sanctuary/second_sanctum_0_ripple_post", "spawn")
+            Game:setFlag("ripple2nd", true)
             self.fakefader:fadeOutAndRemove(0.5)
             self.tiles.alpha = 1
             self.tiles_osc.alpha = 1

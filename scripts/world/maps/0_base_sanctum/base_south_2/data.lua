@@ -1,7 +1,7 @@
 return {
-  version = "1.11",
+  version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.12.1",
+  tiledversion = "1.12.2",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -376,6 +376,7 @@ return {
           opacity = 1,
           visible = true,
           properties = {
+            ["flagcheck"] = "ripple2nd",
             ["map"] = "1_2nd_sanctuary/second_sanctum_1_winglade"
           }
         },
