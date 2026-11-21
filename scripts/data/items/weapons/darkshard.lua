@@ -4,7 +4,7 @@ function item:init()
     super.init(self)
 
     -- Display name
-    self.name = "Dark Shard"
+    self.name = " "
 
     -- Item type (item, key, weapon, armor)
     self.type = "weapon"
@@ -16,7 +16,7 @@ function item:init()
     -- Shop description
     self.shop = ""
     -- Menu description
-    self.description = "A piece of desaturated glass that radiates with DARK energy."
+    self.description = " "
 
     -- Default shop price (sell price is halved)
     self.price = 100

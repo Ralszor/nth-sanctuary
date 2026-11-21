@@ -371,7 +371,6 @@ function DarkEquipMenu:update()
         end
 		return
     end
-	
 	super.update(self)
 end
 

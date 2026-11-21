@@ -1624,7 +1624,7 @@ return {
 			r:shake(2)
 		end
 		
-		cutscene:text("[noskip][shake:2]* ...Not to shoot you[func:b] in the GOD[wait:4] DAMN[wait:4] EYE!", "insane_pissed", j, {top = false,
+		cutscene:text("[noskip][shake:2]* ...Not to shoot you[func:b] in the GOD[face:insane_pissed][wait:4] DAMN[wait:4] EYE!", "insane", j, {top = false,
 			functions = {
 				b = function()
 					doThat() --[[   <-- The evil doThis() :jellycruel:    ]]
